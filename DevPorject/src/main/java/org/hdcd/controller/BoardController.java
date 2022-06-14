@@ -7,8 +7,11 @@ import java.util.List;
 import org.hdcd.domain.Board;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -54,6 +57,41 @@ public class BoardController {
 	@PostMapping
 	public ResponseEntity<String> register(@RequestBody Board board) {
 		log.info("register");
+		
+		ResponseEntity<String> entity = new ResponseEntity<>("SUCCESS", HttpStatus.OK);
+		
+		return entity;
+	}
+	
+	@GetMapping("/{boardNo}")
+	public ResponseEntity<Board> read(@PathVariable("boardNo") int boardNo) {
+		log.info("read");
+		
+		Board board = new Board();
+		
+		board.setBoardNo(1);
+		board.setTitle("향수");
+		board.setContent("넓은 벌 동쪽 끝으로");
+		board.setWriter("hongkd");
+		board.setRegDate(LocalDateTime.now());
+		
+		ResponseEntity<Board> entity = new ResponseEntity<>(board, HttpStatus.OK);
+		
+		return entity;
+	}
+	
+	@DeleteMapping("/{boardNo}")
+	public ResponseEntity<String> remove(@PathVariable("boardNo") int boardNo) {
+		log.info("remove");
+		
+		ResponseEntity<String> entity = new ResponseEntity<>("SUCCESS", HttpStatus.OK);
+		
+		return entity;
+	}
+	
+	@PutMapping("/{boardNo}")
+	public ResponseEntity<String> modify(@PathVariable("boardNo") int boardNo) {
+		log.info("modify");
 		
 		ResponseEntity<String> entity = new ResponseEntity<>("SUCCESS", HttpStatus.OK);
 		
